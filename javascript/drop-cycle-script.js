@@ -53,16 +53,19 @@ function checkAllCheckboxes() {
 	);
 
 	if (allChecked) {
-		setTimeout(() => {
-			allCheckboxes.forEach((checkbox) => {
-				checkbox.checked = false;
-				const label = document.querySelector(
-					`label[for="${checkbox.id}"] img`
-				);
-				if (label) {
-					label.classList.remove("dimmed");
-				}
-			});
-		}, 1000);
+		allCheckboxes.forEach((checkbox) => {
+			checkbox.checked = false;
+			const label = document.querySelector(
+				`label[for="${checkbox.id}"] img`
+			);
+			if (label) {
+				label.classList.remove("dimmed");
+
+				label.classList.add("restore-animation");
+				setTimeout(() => {
+					label.classList.remove("restore-animation");
+				}, 1000); // Duração da animação
+			}
+		});
 	}
 }
